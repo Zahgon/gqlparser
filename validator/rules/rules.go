@@ -1,8 +1,6 @@
 package rules
 
 import (
-	"slices"
-
 	"github.com/vektah/gqlparser/v2/validator/core"
 )
 
@@ -13,114 +11,32 @@ type Rules struct {
 }
 
 // NewRules creates a Rules instance with the specified rules.
-func NewRules(rs ...core.Rule) *Rules {
-	r := &Rules{
-		rules: make(map[string]core.RuleFunc),
-	}
-
-	for _, rule := range rs {
-		r.AddRule(rule.Name, rule.RuleFunc)
-	}
-
-	return r
-}
+func NewRules(rs ...core.Rule) *Rules { _ = "STUB: not implemented"; return nil }
 
 // NewDefaultRules creates a Rules instance containing the default GraphQL validation rule set.
-func NewDefaultRules() *Rules {
-	rules := []core.Rule{
-		FieldsOnCorrectTypeRule,
-		FragmentsOnCompositeTypesRule,
-		KnownArgumentNamesRule,
-		KnownDirectivesRule,
-		KnownFragmentNamesRule,
-		KnownRootTypeRule,
-		KnownTypeNamesRule,
-		LoneAnonymousOperationRule,
-		MaxIntrospectionDepth,
-		NoFragmentCyclesRule,
-		NoUndefinedVariablesRule,
-		NoUnusedFragmentsRule,
-		NoUnusedVariablesRule,
-		OverlappingFieldsCanBeMergedRule,
-		PossibleFragmentSpreadsRule,
-		ProvidedRequiredArgumentsRule,
-		ScalarLeafsRule,
-		SingleFieldSubscriptionsRule,
-		UniqueArgumentNamesRule,
-		UniqueDirectivesPerLocationRule,
-		UniqueFragmentNamesRule,
-		UniqueInputFieldNamesRule,
-		UniqueOperationNamesRule,
-		UniqueVariableNamesRule,
-		ValuesOfCorrectTypeRule,
-		VariablesAreInputTypesRule,
-		VariablesInAllowedPositionRule,
-	}
-
-	r := NewRules(rules...)
-
-	return r
-}
+func NewDefaultRules() *Rules { _ = "STUB: not implemented"; return nil }
 
 // AddRule adds a rule with the specified name and rule function to the rule set.
 // If a rule with the same name already exists, it will not be added.
-func (r *Rules) AddRule(name string, ruleFunc core.RuleFunc) {
-	if r.rules == nil {
-		r.rules = make(map[string]core.RuleFunc)
-	}
-
-	if _, exists := r.rules[name]; !exists {
-		r.rules[name] = ruleFunc
-		r.ruleNameKeys = append(r.ruleNameKeys, name)
-	}
-}
+func (r *Rules) AddRule(name string, ruleFunc core.RuleFunc) { _ = "STUB: not implemented"; return }
 
 // GetInner returns the internal rule map.
 // If the map is not initialized, it returns an empty map.
 // This returns a copy of the rules map, not the original map.
-func (r *Rules) GetInner() map[string]core.RuleFunc {
-	if r == nil {
-		return nil // impossible nonsense, hopefully
-	}
-	if r.rules == nil {
-		return make(map[string]core.RuleFunc)
-	}
+func (r *Rules) GetInner() map[string]core.RuleFunc { _ = "STUB: not implemented"; return nil }
 
-	rules := make(map[string]core.RuleFunc)
-	for k, v := range r.rules {
-		rules[k] = v
-	}
-
-	return rules
-}
+// impossible nonsense, hopefully
 
 // RemoveRule removes a rule with the specified name from the rule set.
 // If no rule with the specified name exists, it does nothing.
-func (r *Rules) RemoveRule(name string) {
-	if r == nil {
-		return // impossible nonsense, hopefully
-	}
-	if r.rules != nil {
-		delete(r.rules, name)
-	}
+func (r *Rules) RemoveRule(name string) { _ = "STUB: not implemented"; return }
 
-	if len(r.ruleNameKeys) > 0 {
-		r.ruleNameKeys = slices.DeleteFunc(r.ruleNameKeys, func(s string) bool {
-			return s == name // delete the name rule key
-		})
-	}
-}
+// impossible nonsense, hopefully
+
+// delete the name rule key
 
 // ReplaceRule replaces a rule with the specified name with a new rule function.
 // If no rule with the specified name exists, it does nothing.
-func (r *Rules) ReplaceRule(name string, ruleFunc core.RuleFunc) {
-	if r == nil {
-		return // impossible nonsense, hopefully
-	}
-	if r.rules == nil {
-		r.rules = make(map[string]core.RuleFunc)
-	}
-	if _, exists := r.rules[name]; exists {
-		r.rules[name] = ruleFunc
-	}
-}
+func (r *Rules) ReplaceRule(name string, ruleFunc core.RuleFunc) { _ = "STUB: not implemented"; return }
+
+// impossible nonsense, hopefully

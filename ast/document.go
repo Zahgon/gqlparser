@@ -17,13 +17,7 @@ type SchemaDocument struct {
 	Comment         *CommentGroup
 }
 
-func (d *SchemaDocument) Merge(other *SchemaDocument) {
-	d.Schema = append(d.Schema, other.Schema...)
-	d.SchemaExtension = append(d.SchemaExtension, other.SchemaExtension...)
-	d.Directives = append(d.Directives, other.Directives...)
-	d.Definitions = append(d.Definitions, other.Definitions...)
-	d.Extensions = append(d.Extensions, other.Extensions...)
-}
+func (d *SchemaDocument) Merge(other *SchemaDocument) { _ = "STUB: not implemented"; return }
 
 type Schema struct {
 	Query            *Definition
@@ -43,32 +37,23 @@ type Schema struct {
 }
 
 // AddTypes is the helper to add types definition to the schema.
-func (s *Schema) AddTypes(defs ...*Definition) {
-	if s.Types == nil {
-		s.Types = make(map[string]*Definition)
-	}
-	for _, def := range defs {
-		s.Types[def.Name] = def
-	}
-}
+func (s *Schema) AddTypes(defs ...*Definition) { _ = "STUB: not implemented"; return }
 
-func (s *Schema) AddPossibleType(name string, def *Definition) {
-	s.PossibleTypes[name] = append(s.PossibleTypes[name], def)
-}
+func (s *Schema) AddPossibleType(name string, def *Definition) { _ = "STUB: not implemented"; return }
 
 // GetPossibleTypes will enumerate all the definitions for a given interface or union.
 func (s *Schema) GetPossibleTypes(def *Definition) []*Definition {
-	return s.PossibleTypes[def.Name]
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *Schema) AddImplements(name string, iface *Definition) {
-	s.Implements[name] = append(s.Implements[name], iface)
-}
+func (s *Schema) AddImplements(name string, iface *Definition) { _ = "STUB: not implemented"; return }
 
 // GetImplements returns all the interface and union definitions that the given definition
 // satisfies.
 func (s *Schema) GetImplements(def *Definition) []*Definition {
-	return s.Implements[def.Name]
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type SchemaDefinition struct {

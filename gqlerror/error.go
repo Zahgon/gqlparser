@@ -1,11 +1,6 @@
 package gqlerror
 
 import (
-	"errors"
-	"fmt"
-	"strconv"
-	"strings"
-
 	"github.com/vektah/gqlparser/v2/ast"
 )
 
@@ -19,16 +14,7 @@ type Error struct {
 	Rule       string         `json:"-"`
 }
 
-func (err *Error) SetFile(file string) {
-	if file == "" {
-		return
-	}
-	if err.Extensions == nil {
-		err.Extensions = map[string]any{}
-	}
-
-	err.Extensions["file"] = file
-}
+func (err *Error) SetFile(file string) { _ = "STUB: not implemented"; return }
 
 type Location struct {
 	Line   int `json:"line,omitempty"`
@@ -37,162 +23,41 @@ type Location struct {
 
 type List []*Error
 
-func (err *Error) Error() string {
-	var res strings.Builder
-	if err == nil {
-		return ""
-	}
-	filename, _ := err.Extensions["file"].(string)
-	if filename == "" {
-		filename = "input"
-	}
-	res.WriteString(filename)
+func (err *Error) Error() string { _ = "STUB: not implemented"; return "" }
 
-	if len(err.Locations) > 0 {
-		res.WriteByte(':')
-		res.WriteString(strconv.Itoa(err.Locations[0].Line))
-		res.WriteByte(':')
-		res.WriteString(strconv.Itoa(err.Locations[0].Column))
-	}
+func (err *Error) pathString() string { _ = "STUB: not implemented"; return "" }
 
-	res.WriteString(": ")
-	if ps := err.pathString(); ps != "" {
-		res.WriteString(ps)
-		res.WriteByte(' ')
-	}
+func (err *Error) Unwrap() error { _ = "STUB: not implemented"; return nil }
 
-	res.WriteString(err.Message)
+func (err *Error) AsError() error { _ = "STUB: not implemented"; return nil }
 
-	return res.String()
-}
+func (errs List) Error() string { _ = "STUB: not implemented"; return "" }
 
-func (err *Error) pathString() string {
-	return err.Path.String()
-}
+func (errs List) Is(target error) bool { _ = "STUB: not implemented"; return false }
 
-func (err *Error) Unwrap() error {
-	return err.Err
-}
+func (errs List) As(target any) bool { _ = "STUB: not implemented"; return false }
 
-func (err *Error) AsError() error {
-	if err == nil {
-		return nil
-	}
-	return err
-}
+func (errs List) Unwrap() []error { _ = "STUB: not implemented"; return nil }
 
-func (errs List) Error() string {
-	var buf strings.Builder
-	for _, err := range errs {
-		buf.WriteString(err.Error())
-		buf.WriteByte('\n')
-	}
-	return buf.String()
-}
+func WrapPath(path ast.Path, err error) *Error { _ = "STUB: not implemented"; return nil }
 
-func (errs List) Is(target error) bool {
-	for _, err := range errs {
-		if errors.Is(err, target) {
-			return true
-		}
-	}
-	return false
-}
+func Wrap(err error) *Error { _ = "STUB: not implemented"; return nil }
 
-func (errs List) As(target any) bool {
-	for _, err := range errs {
-		if errors.As(err, target) {
-			return true
-		}
-	}
-	return false
-}
+func WrapIfUnwrapped(err error) *Error { _ = "STUB: not implemented"; return nil }
 
-func (errs List) Unwrap() []error {
-	l := make([]error, len(errs))
-	for i, err := range errs {
-		l[i] = err
-	}
-	return l
-}
-
-func WrapPath(path ast.Path, err error) *Error {
-	if err == nil {
-		return nil
-	}
-	return &Error{
-		Err:     err,
-		Message: err.Error(),
-		Path:    path,
-	}
-}
-
-func Wrap(err error) *Error {
-	if err == nil {
-		return nil
-	}
-	return &Error{
-		Err:     err,
-		Message: err.Error(),
-	}
-}
-
-func WrapIfUnwrapped(err error) *Error {
-	if err == nil {
-		return nil
-	}
-	gqlErr := &Error{}
-	if errors.As(err, &gqlErr) {
-		return gqlErr
-	}
-	return &Error{
-		Err:     err,
-		Message: err.Error(),
-	}
-}
-
-func Errorf(message string, args ...any) *Error {
-	return &Error{
-		Message: fmt.Sprintf(message, args...),
-	}
-}
+func Errorf(message string, args ...any) *Error { _ = "STUB: not implemented"; return nil }
 
 func ErrorPathf(path ast.Path, message string, args ...any) *Error {
-	return &Error{
-		Message: fmt.Sprintf(message, args...),
-		Path:    path,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ErrorPosf(pos *ast.Position, message string, args ...any) *Error {
-	if pos == nil {
-		return ErrorLocf(
-			"",
-			-1,
-			-1,
-			message,
-			args...,
-		)
-	}
-	return ErrorLocf(
-		pos.Src.Name,
-		pos.Line,
-		pos.Column,
-		message,
-		args...,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ErrorLocf(file string, line, col int, message string, args ...any) *Error {
-	var extensions map[string]any
-	if file != "" {
-		extensions = map[string]any{"file": file}
-	}
-	return &Error{
-		Message:    fmt.Sprintf(message, args...),
-		Extensions: extensions,
-		Locations: []Location{
-			{Line: line, Column: col},
-		},
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

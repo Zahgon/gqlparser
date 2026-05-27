@@ -17,8 +17,8 @@ type Rule struct {
 // usage: sort.Sort(core.NameSorter(specifiedRules))
 type NameSorter []Rule
 
-func (a NameSorter) Len() int           { return len(a) }
-func (a NameSorter) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
-func (a NameSorter) Less(i, j int) bool { return a[i].Name < a[j].Name }
+func (a NameSorter) Len() int           { _ = "STUB: not implemented"; return 0 }
+func (a NameSorter) Swap(i, j int)      { _ = "STUB: not implemented"; return }
+func (a NameSorter) Less(i, j int) bool { _ = "STUB: not implemented"; return false }
 
 type ErrorOption func(err *gqlerror.Error)

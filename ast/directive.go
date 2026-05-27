@@ -39,8 +39,6 @@ type Directive struct {
 }
 
 func (d *Directive) ArgumentMap(vars map[string]any) map[string]any {
-	if d.Definition == nil {
-		return nil
-	}
-	return arg2map(d.Definition.Arguments, d.Arguments, vars)
+	_ = "STUB: not implemented"
+	return nil
 }

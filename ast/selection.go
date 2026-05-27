@@ -7,13 +7,13 @@ type Selection interface {
 	GetPosition() *Position
 }
 
-func (*Field) isSelection()          {}
-func (*FragmentSpread) isSelection() {}
-func (*InlineFragment) isSelection() {}
+func (*Field) isSelection()          { _ = "STUB: not implemented"; return }
+func (*FragmentSpread) isSelection() { _ = "STUB: not implemented"; return }
+func (*InlineFragment) isSelection() { _ = "STUB: not implemented"; return }
 
-func (f *Field) GetPosition() *Position          { return f.Position }
-func (s *FragmentSpread) GetPosition() *Position { return s.Position }
-func (f *InlineFragment) GetPosition() *Position { return f.Position }
+func (f *Field) GetPosition() *Position          { _ = "STUB: not implemented"; return nil }
+func (s *FragmentSpread) GetPosition() *Position { _ = "STUB: not implemented"; return nil }
+func (f *InlineFragment) GetPosition() *Position { _ = "STUB: not implemented"; return nil }
 
 type Field struct {
 	Alias        string
@@ -37,8 +37,6 @@ type Argument struct {
 }
 
 func (f *Field) ArgumentMap(vars map[string]any) map[string]any {
-	if f.Definition == nil {
-		return nil
-	}
-	return arg2map(f.Definition.Arguments, f.Arguments, vars)
+	_ = "STUB: not implemented"
+	return nil
 }

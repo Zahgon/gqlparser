@@ -1,7 +1,5 @@
 package ast
 
-import "slices"
-
 type DefinitionKind string
 
 const (
@@ -39,25 +37,15 @@ type Definition struct {
 	EndOfDefinitionComment   *CommentGroup
 }
 
-func (d *Definition) IsLeafType() bool {
-	return d.Kind == Enum || d.Kind == Scalar
-}
+func (d *Definition) IsLeafType() bool { _ = "STUB: not implemented"; return false }
 
-func (d *Definition) IsAbstractType() bool {
-	return d.Kind == Interface || d.Kind == Union
-}
+func (d *Definition) IsAbstractType() bool { _ = "STUB: not implemented"; return false }
 
-func (d *Definition) IsCompositeType() bool {
-	return d.Kind == Object || d.Kind == Interface || d.Kind == Union
-}
+func (d *Definition) IsCompositeType() bool { _ = "STUB: not implemented"; return false }
 
-func (d *Definition) IsInputType() bool {
-	return d.Kind == Scalar || d.Kind == Enum || d.Kind == InputObject
-}
+func (d *Definition) IsInputType() bool { _ = "STUB: not implemented"; return false }
 
-func (d *Definition) OneOf(types ...string) bool {
-	return slices.Contains(types, d.Name)
-}
+func (d *Definition) OneOf(types ...string) bool { _ = "STUB: not implemented"; return false }
 
 type FieldDefinition struct {
 	Description  string

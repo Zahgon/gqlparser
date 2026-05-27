@@ -75,25 +75,6 @@ var NoFragmentCyclesRule = Rule{
 }
 
 func getFragmentSpreads(node ast.SelectionSet) []*ast.FragmentSpread {
-	var spreads []*ast.FragmentSpread
-
-	setsToVisit := []ast.SelectionSet{node}
-
-	for len(setsToVisit) != 0 {
-		set := setsToVisit[len(setsToVisit)-1]
-		setsToVisit = setsToVisit[:len(setsToVisit)-1]
-
-		for _, selection := range set {
-			switch selection := selection.(type) {
-			case *ast.FragmentSpread:
-				spreads = append(spreads, selection)
-			case *ast.Field:
-				setsToVisit = append(setsToVisit, selection.SelectionSet)
-			case *ast.InlineFragment:
-				setsToVisit = append(setsToVisit, selection.SelectionSet)
-			}
-		}
-	}
-
-	return spreads
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -33,37 +33,13 @@ func checkDepthSelectionSet(
 	visitedFragments map[string]bool,
 	depth int,
 ) bool {
-	for _, child := range selectionSet {
-		if field, ok := child.(*ast.Field); ok {
-			if checkDepthField(field, visitedFragments, depth) {
-				return true
-			}
-		}
-		if fragmentSpread, ok := child.(*ast.FragmentSpread); ok {
-			if checkDepthFragmentSpread(fragmentSpread, visitedFragments, depth) {
-				return true
-			}
-		}
-		if inlineFragment, ok := child.(*ast.InlineFragment); ok {
-			if checkDepthSelectionSet(inlineFragment.SelectionSet, visitedFragments, depth) {
-				return true
-			}
-		}
-	}
+	_ = "STUB: not implemented"
 	return false
 }
 
 func checkDepthField(field *ast.Field, visitedFragments map[string]bool, depth int) bool {
-	if field.Name == "fields" ||
-		field.Name == "interfaces" ||
-		field.Name == "possibleTypes" ||
-		field.Name == "inputFields" {
-		depth++
-		if depth >= maxListsDepth {
-			return true
-		}
-	}
-	return checkDepthSelectionSet(field.SelectionSet, visitedFragments, depth)
+	_ = "STUB: not implemented"
+	return false
 }
 
 func checkDepthFragmentSpread(
@@ -71,23 +47,16 @@ func checkDepthFragmentSpread(
 	visitedFragments map[string]bool,
 	depth int,
 ) bool {
-	fragmentName := fragmentSpread.Name
-	if visited, ok := visitedFragments[fragmentName]; ok && visited {
-		// Fragment cycles are handled by `NoFragmentCyclesRule`.
-		return false
-	}
-	fragment := fragmentSpread.Definition
-	if fragment == nil {
-		// Missing fragments checks are handled by `KnownFragmentNamesRule`.
-		return false
-	}
-
-	// Rather than following an immutable programming pattern which has
-	// significant memory and garbage collection overhead, we've opted to
-	// take a mutable approach for efficiency's sake. Importantly visiting a
-	// fragment twice is fine, so long as you don't do one visit inside the
-	// other.
-	visitedFragments[fragmentName] = true
-	defer delete(visitedFragments, fragmentName)
-	return checkDepthSelectionSet(fragment.SelectionSet, visitedFragments, depth)
+	_ = "STUB: not implemented"
+	return false
 }
+
+// Fragment cycles are handled by `NoFragmentCyclesRule`.
+
+// Missing fragments checks are handled by `KnownFragmentNamesRule`.
+
+// Rather than following an immutable programming pattern which has
+// significant memory and garbage collection overhead, we've opted to
+// take a mutable approach for efficiency's sake. Importantly visiting a
+// fragment twice is fine, so long as you don't do one visit inside the
+// other.

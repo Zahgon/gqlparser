@@ -19,17 +19,4 @@ var UniqueArgumentNamesRule = Rule{
 	},
 }
 
-func checkUniqueArgs(args ast.ArgumentList, addError AddErrFunc) {
-	knownArgNames := map[string]int{}
-
-	for _, arg := range args {
-		if knownArgNames[arg.Name] == 1 {
-			addError(
-				Message(`There can be only one argument named "%s".`, arg.Name),
-				At(arg.Position),
-			)
-		}
-
-		knownArgNames[arg.Name]++
-	}
-}
+func checkUniqueArgs(args ast.ArgumentList, addError AddErrFunc) { _ = "STUB: not implemented"; return }

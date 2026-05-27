@@ -1,20 +1,12 @@
 package ast
 
-func NonNullNamedType(named string, pos *Position) *Type {
-	return &Type{NamedType: named, NonNull: true, Position: pos}
-}
+func NonNullNamedType(named string, pos *Position) *Type { _ = "STUB: not implemented"; return nil }
 
-func NamedType(named string, pos *Position) *Type {
-	return &Type{NamedType: named, NonNull: false, Position: pos}
-}
+func NamedType(named string, pos *Position) *Type { _ = "STUB: not implemented"; return nil }
 
-func NonNullListType(elem *Type, pos *Position) *Type {
-	return &Type{Elem: elem, NonNull: true, Position: pos}
-}
+func NonNullListType(elem *Type, pos *Position) *Type { _ = "STUB: not implemented"; return nil }
 
-func ListType(elem *Type, pos *Position) *Type {
-	return &Type{Elem: elem, NonNull: false, Position: pos}
-}
+func ListType(elem *Type, pos *Position) *Type { _ = "STUB: not implemented"; return nil }
 
 type Type struct {
 	NamedType string
@@ -23,46 +15,10 @@ type Type struct {
 	Position  *Position `dump:"-" json:"-"`
 }
 
-func (t *Type) Name() string {
-	if t.NamedType != "" {
-		return t.NamedType
-	}
+func (t *Type) Name() string { _ = "STUB: not implemented"; return "" }
 
-	return t.Elem.Name()
-}
+func (t *Type) String() string { _ = "STUB: not implemented"; return "" }
 
-func (t *Type) String() string {
-	nn := ""
-	if t.NonNull {
-		nn = "!"
-	}
-	if t.NamedType != "" {
-		return t.NamedType + nn
-	}
+func (t *Type) IsCompatible(other *Type) bool { _ = "STUB: not implemented"; return false }
 
-	return "[" + t.Elem.String() + "]" + nn
-}
-
-func (t *Type) IsCompatible(other *Type) bool {
-	if t.NamedType != other.NamedType {
-		return false
-	}
-
-	if t.Elem != nil && other.Elem == nil {
-		return false
-	}
-
-	if t.Elem != nil && !t.Elem.IsCompatible(other.Elem) {
-		return false
-	}
-
-	if other.NonNull {
-		return t.NonNull
-	}
-
-	return true
-}
-
-func (t *Type) Dump() string {
-	return t.String()
-}
+func (t *Type) Dump() string { _ = "STUB: not implemented"; return "" }
